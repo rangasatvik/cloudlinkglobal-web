@@ -130,7 +130,8 @@ export default function Home() {
             className="mt-6 grid gap-3 md:grid-cols-2"
           >
             {/* Redirect back to your site after submit */}
-            <input type="hidden" name="_next" value="https://cloudlinkglobal.com/thanks" />
+            <input type="hidden" name="_next" value="https://www.cloudlinkglobal.com/thanks" />
+
 
             <input
               name="name"

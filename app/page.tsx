@@ -63,10 +63,7 @@ export default function Home() {
                 desc: "When a deploy increases cost, we alert with percent change and estimated monthly impact.",
               },
             ].map((x) => (
-              <div
-                key={x.title}
-                className="rounded-xl border border-white/10 p-6 bg-white/5"
-              >
+              <div key={x.title} className="rounded-xl border border-white/10 p-6 bg-white/5">
                 <div className="text-lg font-semibold">{x.title}</div>
                 <p className="mt-2 text-sm text-white/70">{x.desc}</p>
               </div>
@@ -82,10 +79,7 @@ export default function Home() {
           </p>
           <div className="mt-6 grid gap-3 md:grid-cols-3 text-sm">
             {["Platform / Infrastructure", "DevOps / SRE", "Engineering Leaders"].map((t) => (
-              <div
-                key={t}
-                className="rounded-xl border border-white/10 p-4 bg-white/5"
-              >
+              <div key={t} className="rounded-xl border border-white/10 p-4 bg-white/5">
                 {t}
               </div>
             ))}
@@ -114,10 +108,7 @@ export default function Home() {
                 desc: "Remove the role to immediately disable access.",
               },
             ].map((x) => (
-              <div
-                key={x.title}
-                className="rounded-xl border border-white/10 p-6 bg-white/5"
-              >
+              <div key={x.title} className="rounded-xl border border-white/10 p-6 bg-white/5">
                 <div className="font-semibold">{x.title}</div>
                 <p className="mt-2 text-sm text-white/70">{x.desc}</p>
               </div>
@@ -126,10 +117,7 @@ export default function Home() {
         </section>
 
         {/* Waitlist */}
-        <section
-          id="waitlist"
-          className="mt-16 rounded-2xl border border-white/10 bg-white/5 p-8"
-        >
+        <section id="waitlist" className="mt-16 rounded-2xl border border-white/10 bg-white/5 p-8">
           <h2 className="text-2xl font-semibold">Join early access</h2>
           <p className="mt-2 text-white/70">
             Get notified when Cloudlink opens onboarding for early customers.
@@ -141,6 +129,9 @@ export default function Home() {
             method="POST"
             className="mt-6 grid gap-3 md:grid-cols-2"
           >
+            {/* Redirect back to your site after submit */}
+            <input type="hidden" name="_next" value="https://cloudlinkglobal.com/thanks" />
+
             <input
               name="name"
               required

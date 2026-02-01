@@ -26,7 +26,7 @@ export default function Home() {
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3">
             <Image
-              src="/cloudlink-logo.svg"
+              src="/cloudlink-logo.png"
               alt="Cloudlink"
               width={28}
               height={28}
@@ -284,7 +284,12 @@ export default function Home() {
         {/* Footer */}
         <footer className="mt-16 flex items-center justify-between gap-4 text-xs text-white/50">
           <div className="flex items-center gap-2">
-            <Image src="/cloudlink-logo.svg" alt="Cloudlink" width={18} height={18} />
+            <Image
+              src="/cloudlink-logo.png"
+              alt="Cloudlink"
+              width={18}
+              height={18}
+            />
             <span>© {new Date().getFullYear()} Cloudlink. All rights reserved.</span>
           </div>
           <a href="#waitlist" className="hover:text-white/70">

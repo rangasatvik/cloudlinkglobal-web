@@ -5,6 +5,7 @@ import WaitlistForm from "./components/WaitlistForm";
 import MouseGlow from "./components/MouseGlow";
 import Reveal from "./components/Reveal";
 import { Stagger, StaggerItem } from "./components/Stagger";
+import InteractiveAlert from "./components/InteractiveAlert";
 
 export default function Home() {
   const cardClass =
@@ -36,7 +37,10 @@ export default function Home() {
   ];
 
   const trust = [
-    { title: "Read-only permissions", desc: "No write access. No infrastructure changes possible." },
+    {
+      title: "Read-only permissions",
+      desc: "No write access. No infrastructure changes possible.",
+    },
     { title: "No logs or PII", desc: "We do not need application logs or customer data." },
     { title: "Auditable access", desc: "All access is visible in your AWS CloudTrail." },
     { title: "Revocable anytime", desc: "Remove the role to immediately disable access." },
@@ -199,42 +203,9 @@ export default function Home() {
             </StaggerItem>
 
             <div className="mt-8 grid gap-4 md:grid-cols-2">
+              {/* ✅ REPLACED LEFT CARD WITH INTERACTIVE COMPONENT */}
               <StaggerItem>
-                <div className={cardClass}>
-                  <div className="flex items-start justify-between gap-4">
-                    <div>
-                      <div className="text-sm font-semibold">Deploy detected → Cost regression</div>
-                      <div className="mt-1 text-xs text-white/50">
-                        Detected 2h after deploy • Confidence: High
-                      </div>
-                    </div>
-                    <span className="rounded-full border border-white/15 bg-black/30 px-3 py-1 text-xs text-white/70">
-                      ALERT
-                    </span>
-                  </div>
-
-                  <div className="mt-6 grid gap-3">
-                    <div className="flex items-center justify-between rounded-xl border border-white/10 bg-black/20 px-4 py-3">
-                      <span className="text-sm text-white/70">Service</span>
-                      <span className="text-sm font-semibold">ECS · api-service</span>
-                    </div>
-
-                    <div className="flex items-center justify-between rounded-xl border border-white/10 bg-black/20 px-4 py-3">
-                      <span className="text-sm text-white/70">Deploy</span>
-                      <span className="text-sm font-semibold">api@1.14.2</span>
-                    </div>
-
-                    <div className="flex items-center justify-between rounded-xl border border-white/10 bg-black/20 px-4 py-3">
-                      <span className="text-sm text-white/70">Hourly cost change</span>
-                      <span className="text-sm font-semibold text-red-200">+18%</span>
-                    </div>
-
-                    <div className="flex items-center justify-between rounded-xl border border-white/10 bg-black/20 px-4 py-3">
-                      <span className="text-sm text-white/70">Est. monthly impact</span>
-                      <span className="text-sm font-semibold">+$4,200</span>
-                    </div>
-                  </div>
-                </div>
+                <InteractiveAlert cardClass={cardClass} />
               </StaggerItem>
 
               <StaggerItem>

@@ -7,6 +7,9 @@ import Reveal from "./components/Reveal";
 import { Stagger, StaggerItem } from "./components/Stagger";
 import InteractiveAlert from "./components/InteractiveAlert";
 import MagneticButton from "./components/MagneticButton";
+import StickyNav from "./components/StickyNav";
+import TrustStrip from "./components/TrustStrip";
+import DemoPanel from "./components/DemoPanel";
 import { motion } from "framer-motion";
 
 export default function Home() {
@@ -57,7 +60,20 @@ export default function Home() {
     <main className="min-h-screen bg-black text-white">
       <MouseGlow />
 
-      <div className="relative mx-auto max-w-5xl px-6 py-16">
+      {/* ✅ Sticky nav */}
+      <StickyNav
+        items={[
+          { id: "top", label: "Top" },
+          { id: "who", label: "Who" },
+          { id: "how", label: "How" },
+          { id: "demo", label: "Demo" },
+          { id: "get", label: "Output" },
+          { id: "security", label: "Security" },
+          { id: "waitlist", label: "Waitlist" },
+        ]}
+      />
+
+      <div id="top" className="relative mx-auto max-w-5xl px-6 py-16">
         {/* Top bar */}
         <Reveal>
           <div className="flex items-center justify-between">
@@ -88,7 +104,6 @@ export default function Home() {
             </p>
 
             <div className="mt-8 flex flex-col sm:flex-row gap-3">
-              {/* ✅ Magnetic primary CTA */}
               <MagneticButton href="#waitlist" className={primaryBtn}>
                 Join early access
               </MagneticButton>
@@ -109,11 +124,14 @@ export default function Home() {
                 Monthly impact estimates
               </span>
             </div>
+
+            {/* ✅ Trust strip under hero */}
+            <TrustStrip />
           </section>
         </Reveal>
 
         {/* Who it's for */}
-        <section className="mt-16">
+        <section id="who" className="mt-16">
           <Stagger>
             <StaggerItem>
               <h2 className="text-2xl font-semibold">Who Cloudlink is for</h2>
@@ -198,8 +216,27 @@ export default function Home() {
           </Stagger>
         </section>
 
+        {/* ✅ Demo Panel */}
+        <section id="demo" className="mt-16">
+          <Stagger>
+            <StaggerItem>
+              <div className="flex flex-col gap-2">
+                <h2 className="text-2xl font-semibold">See it in action</h2>
+                <p className="max-w-2xl text-white/70">
+                  A deploy hits production, Cloudlink detects the cost shift, and estimates monthly
+                  impact.
+                </p>
+              </div>
+            </StaggerItem>
+
+            <StaggerItem>
+              <DemoPanel cardClass={cardClass} />
+            </StaggerItem>
+          </Stagger>
+        </section>
+
         {/* What you get */}
-        <section className="mt-16">
+        <section id="get" className="mt-16">
           <Stagger>
             <StaggerItem>
               <div className="flex flex-col gap-2">
@@ -242,8 +279,8 @@ export default function Home() {
           </Stagger>
         </section>
 
-        {/* Trust */}
-        <section className="mt-16">
+        {/* Trust / Security */}
+        <section id="security" className="mt-16">
           <Stagger>
             <StaggerItem>
               <h2 className="text-2xl font-semibold">Security-first by design</h2>

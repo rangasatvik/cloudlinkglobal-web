@@ -1,15 +1,43 @@
+import Image from "next/image";
 import WaitlistForm from "./components/WaitlistForm";
 
 export default function Home() {
+  const cardClass =
+    "rounded-2xl border border-white/10 bg-white/5 p-6 shadow-[0_0_0_1px_rgba(255,255,255,0.03)] transition hover:-translate-y-0.5 hover:border-white/20";
+  const cardClassSm =
+    "rounded-xl border border-white/10 bg-white/5 p-6 shadow-[0_0_0_1px_rgba(255,255,255,0.03)] transition hover:-translate-y-0.5 hover:border-white/20";
+
+  const primaryBtn =
+    "inline-flex items-center justify-center rounded-lg bg-white px-5 py-3 font-semibold text-black shadow-sm hover:bg-white/90 hover:shadow-md focus:outline-none focus:ring-2 focus:ring-white/30";
+  const secondaryBtn =
+    "inline-flex items-center justify-center rounded-lg border border-white/20 bg-white/0 px-5 py-3 font-semibold hover:border-white/40 hover:bg-white/5";
+
   return (
     <main className="min-h-screen bg-black text-white">
-      <div className="mx-auto max-w-5xl px-6 py-16">
+      {/* Background polish */}
+      <div className="pointer-events-none fixed inset-0">
+        <div className="absolute -top-40 left-1/2 h-[560px] w-[560px] -translate-x-1/2 rounded-full bg-white/10 blur-3xl" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.08),transparent_55%)]" />
+        <div className="absolute inset-0 opacity-[0.06] [background-image:linear-gradient(to_right,rgba(255,255,255,0.08)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.08)_1px,transparent_1px)] [background-size:56px_56px]" />
+      </div>
+
+      <div className="relative mx-auto max-w-5xl px-6 py-16">
         {/* Top bar */}
         <div className="flex items-center justify-between">
-          <div className="text-lg font-semibold tracking-tight">Cloudlink</div>
+          <div className="flex items-center gap-3">
+            <Image
+              src="/cloudlink-logo.svg"
+              alt="Cloudlink"
+              width={28}
+              height={28}
+              priority
+            />
+            <div className="text-lg font-semibold tracking-tight">Cloudlink</div>
+          </div>
+
           <a
             href="#waitlist"
-            className="rounded-full border border-white/20 px-4 py-2 text-sm hover:border-white/40"
+            className="rounded-full border border-white/20 bg-white/0 px-4 py-2 text-sm hover:border-white/40 hover:bg-white/5"
           >
             Join early access
           </a>
@@ -21,34 +49,28 @@ export default function Home() {
             Detect AWS cost regressions caused by deploys — automatically.
           </h1>
 
-          <p className="mt-6 max-w-2xl text-lg text-white/70">
-            Cloudlink ties AWS cost changes directly to deployments so engineering teams
-            can catch expensive changes early and understand their monthly impact.
+          <p className="mt-6 max-w-2xl text-lg leading-relaxed text-white/70">
+            Cloudlink ties AWS cost changes directly to deployments so engineering teams can
+            catch expensive changes early and understand their monthly impact.
           </p>
 
           <div className="mt-8 flex flex-col sm:flex-row gap-3">
-            <a
-              href="#waitlist"
-              className="inline-flex items-center justify-center rounded-lg bg-white px-5 py-3 font-semibold text-black hover:bg-white/90"
-            >
+            <a href="#waitlist" className={primaryBtn}>
               Join early access
             </a>
-            <a
-              href="#how"
-              className="inline-flex items-center justify-center rounded-lg border border-white/20 px-5 py-3 font-semibold hover:border-white/40"
-            >
+            <a href="#how" className={secondaryBtn}>
               See how it works
             </a>
           </div>
 
           <div className="mt-8 flex flex-wrap gap-3 text-xs text-white/60">
-            <span className="rounded-full border border-white/15 px-3 py-1">
+            <span className="rounded-full border border-white/15 bg-white/0 px-3 py-1">
               Read-only AWS access
             </span>
-            <span className="rounded-full border border-white/15 px-3 py-1">
+            <span className="rounded-full border border-white/15 bg-white/0 px-3 py-1">
               No agents or credentials
             </span>
-            <span className="rounded-full border border-white/15 px-3 py-1">
+            <span className="rounded-full border border-white/15 bg-white/0 px-3 py-1">
               Monthly impact estimates
             </span>
           </div>
@@ -63,7 +85,7 @@ export default function Home() {
           </p>
 
           <div className="mt-6 grid gap-4 md:grid-cols-2">
-            <div className="rounded-2xl border border-white/10 bg-white/5 p-6">
+            <div className={cardClass}>
               <div className="text-sm font-semibold text-white/80">Best fit</div>
               <ul className="mt-3 space-y-2 text-sm text-white/70">
                 <li>• Teams deploying weekly or daily on AWS</li>
@@ -73,7 +95,7 @@ export default function Home() {
               </ul>
             </div>
 
-            <div className="rounded-2xl border border-white/10 bg-white/5 p-6">
+            <div className={cardClass}>
               <div className="text-sm font-semibold text-white/80">Not a great fit</div>
               <ul className="mt-3 space-y-2 text-sm text-white/70">
                 <li>• Static sites or tiny AWS footprints</li>
@@ -113,17 +135,12 @@ export default function Home() {
                 desc: "See percent change and estimated monthly impact, linked to the deploy window.",
               },
             ].map((x) => (
-              <div
-                key={x.step}
-                className="rounded-2xl border border-white/10 bg-white/5 p-6"
-              >
+              <div key={x.step} className={cardClass}>
                 <div className="flex items-center justify-between">
                   <div className="text-xs font-semibold tracking-widest text-white/50">
                     STEP {x.step}
                   </div>
-
-                  {/* simple icon bubble */}
-                  <div className="h-9 w-9 rounded-full border border-white/10 bg-black/30" />
+                  <div className="h-9 w-9 rounded-full border border-white/10 bg-black/30 shadow-[inset_0_0_0_1px_rgba(255,255,255,0.03)]" />
                 </div>
 
                 <div className="mt-4 text-lg font-semibold">{x.title}</div>
@@ -156,8 +173,7 @@ export default function Home() {
           </div>
 
           <div className="mt-8 grid gap-4 md:grid-cols-2">
-            {/* Sample alert card */}
-            <div className="rounded-2xl border border-white/10 bg-white/5 p-6">
+            <div className={cardClass}>
               <div className="flex items-start justify-between gap-4">
                 <div>
                   <div className="text-sm font-semibold">Deploy detected → Cost regression</div>
@@ -199,8 +215,7 @@ export default function Home() {
               </div>
             </div>
 
-            {/* Why it matters / bullets */}
-            <div className="rounded-2xl border border-white/10 bg-white/5 p-6">
+            <div className={cardClass}>
               <div className="text-sm font-semibold">Why this is better than cost dashboards</div>
               <p className="mt-2 text-sm text-white/70">
                 Cost dashboards tell you what changed. Cloudlink tells you what caused it, so you
@@ -215,10 +230,7 @@ export default function Home() {
               </ul>
 
               <div className="mt-6">
-                <a
-                  href="#waitlist"
-                  className="inline-flex items-center justify-center rounded-lg bg-white px-5 py-3 font-semibold text-black hover:bg-white/90"
-                >
+                <a href="#waitlist" className={primaryBtn}>
                   Join early access
                 </a>
               </div>
@@ -248,10 +260,7 @@ export default function Home() {
                 desc: "Remove the role to immediately disable access.",
               },
             ].map((x) => (
-              <div
-                key={x.title}
-                className="rounded-xl border border-white/10 p-6 bg-white/5"
-              >
+              <div key={x.title} className={cardClassSm}>
                 <div className="font-semibold">{x.title}</div>
                 <p className="mt-2 text-sm text-white/70">{x.desc}</p>
               </div>
@@ -262,7 +271,7 @@ export default function Home() {
         {/* Waitlist */}
         <section
           id="waitlist"
-          className="mt-16 rounded-2xl border border-white/10 bg-white/5 p-8"
+          className="mt-16 rounded-2xl border border-white/10 bg-white/5 p-8 shadow-[0_0_0_1px_rgba(255,255,255,0.03)]"
         >
           <h2 className="text-2xl font-semibold">Join early access</h2>
           <p className="mt-2 text-white/70">
@@ -273,8 +282,14 @@ export default function Home() {
         </section>
 
         {/* Footer */}
-        <footer className="mt-16 text-xs text-white/50">
-          © {new Date().getFullYear()} Cloudlink. All rights reserved.
+        <footer className="mt-16 flex items-center justify-between gap-4 text-xs text-white/50">
+          <div className="flex items-center gap-2">
+            <Image src="/cloudlink-logo.svg" alt="Cloudlink" width={18} height={18} />
+            <span>© {new Date().getFullYear()} Cloudlink. All rights reserved.</span>
+          </div>
+          <a href="#waitlist" className="hover:text-white/70">
+            Join early access
+          </a>
         </footer>
       </div>
     </main>

@@ -6,12 +6,14 @@ import MouseGlow from "./components/MouseGlow";
 import Reveal from "./components/Reveal";
 import { Stagger, StaggerItem } from "./components/Stagger";
 import InteractiveAlert from "./components/InteractiveAlert";
+import MagneticButton from "./components/MagneticButton";
+import { motion } from "framer-motion";
 
 export default function Home() {
   const cardClass =
-    "rounded-2xl border border-white/10 bg-white/5 p-6 shadow-[0_0_0_1px_rgba(255,255,255,0.03)] transition hover:-translate-y-0.5 hover:border-white/20";
+    "rounded-2xl border border-white/10 bg-white/5 p-6 shadow-[0_0_0_1px_rgba(255,255,255,0.03)] transition hover:border-white/20";
   const cardClassSm =
-    "rounded-xl border border-white/10 bg-white/5 p-6 shadow-[0_0_0_1px_rgba(255,255,255,0.03)] transition hover:-translate-y-0.5 hover:border-white/20";
+    "rounded-xl border border-white/10 bg-white/5 p-6 shadow-[0_0_0_1px_rgba(255,255,255,0.03)] transition hover:border-white/20";
 
   const primaryBtn =
     "inline-flex items-center justify-center rounded-lg bg-white px-5 py-3 font-semibold text-black shadow-sm hover:bg-white/90 hover:shadow-md focus:outline-none focus:ring-2 focus:ring-white/30";
@@ -46,6 +48,11 @@ export default function Home() {
     { title: "Revocable anytime", desc: "Remove the role to immediately disable access." },
   ];
 
+  const hoverCard = {
+    whileHover: { y: -6, scale: 1.01 },
+    transition: { type: "spring", stiffness: 380, damping: 28 },
+  } as const;
+
   return (
     <main className="min-h-screen bg-black text-white">
       <MouseGlow />
@@ -76,14 +83,16 @@ export default function Home() {
             </h1>
 
             <p className="mt-6 max-w-2xl text-lg leading-relaxed text-white/70">
-              Cloudlink ties AWS cost changes directly to deployments so engineering teams can
-              catch expensive changes early and understand their monthly impact.
+              Cloudlink ties AWS cost changes directly to deployments so engineering teams can catch
+              expensive changes early and understand their monthly impact.
             </p>
 
             <div className="mt-8 flex flex-col sm:flex-row gap-3">
-              <a href="#waitlist" className={primaryBtn}>
+              {/* ✅ Magnetic primary CTA */}
+              <MagneticButton href="#waitlist" className={primaryBtn}>
                 Join early access
-              </a>
+              </MagneticButton>
+
               <a href="#how" className={secondaryBtn}>
                 See how it works
               </a>
@@ -116,7 +125,7 @@ export default function Home() {
 
             <div className="mt-6 grid gap-4 md:grid-cols-2">
               <StaggerItem>
-                <div className={cardClass}>
+                <motion.div className={cardClass} {...hoverCard}>
                   <div className="text-sm font-semibold text-white/80">Best fit</div>
                   <ul className="mt-3 space-y-2 text-sm text-white/70">
                     <li>• Teams deploying weekly or daily on AWS</li>
@@ -124,11 +133,11 @@ export default function Home() {
                     <li>• Infra costs that spike after releases</li>
                     <li>• Platform, DevOps, SRE, Engineering leaders</li>
                   </ul>
-                </div>
+                </motion.div>
               </StaggerItem>
 
               <StaggerItem>
-                <div className={cardClass}>
+                <motion.div className={cardClass} {...hoverCard}>
                   <div className="text-sm font-semibold text-white/80">Not a great fit</div>
                   <ul className="mt-3 space-y-2 text-sm text-white/70">
                     <li>• Static sites or tiny AWS footprints</li>
@@ -136,7 +145,7 @@ export default function Home() {
                     <li>• If you only want spend dashboards</li>
                     <li>• One-off hobby projects</li>
                   </ul>
-                </div>
+                </motion.div>
               </StaggerItem>
             </div>
           </Stagger>
@@ -158,7 +167,7 @@ export default function Home() {
             <div className="mt-8 grid gap-4 md:grid-cols-3">
               {steps.map((x) => (
                 <StaggerItem key={x.step}>
-                  <div className={cardClass}>
+                  <motion.div className={cardClass} {...hoverCard}>
                     <div className="flex items-center justify-between">
                       <div className="text-xs font-semibold tracking-widest text-white/50">
                         STEP {x.step}
@@ -168,7 +177,7 @@ export default function Home() {
 
                     <div className="mt-4 text-lg font-semibold">{x.title}</div>
                     <p className="mt-2 text-sm text-white/70">{x.desc}</p>
-                  </div>
+                  </motion.div>
                 </StaggerItem>
               ))}
             </div>
@@ -203,17 +212,16 @@ export default function Home() {
             </StaggerItem>
 
             <div className="mt-8 grid gap-4 md:grid-cols-2">
-              {/* ✅ REPLACED LEFT CARD WITH INTERACTIVE COMPONENT */}
               <StaggerItem>
                 <InteractiveAlert cardClass={cardClass} />
               </StaggerItem>
 
               <StaggerItem>
-                <div className={cardClass}>
+                <motion.div className={cardClass} {...hoverCard}>
                   <div className="text-sm font-semibold">Why this is better than cost dashboards</div>
                   <p className="mt-2 text-sm text-white/70">
-                    Cost dashboards tell you what changed. Cloudlink tells you what caused it, so you
-                    can fix regressions before the bill compounds.
+                    Cost dashboards tell you what changed. Cloudlink tells you what caused it, so
+                    you can fix regressions before the bill compounds.
                   </p>
 
                   <ul className="mt-6 space-y-3 text-sm text-white/70">
@@ -228,7 +236,7 @@ export default function Home() {
                       Join early access
                     </a>
                   </div>
-                </div>
+                </motion.div>
               </StaggerItem>
             </div>
           </Stagger>
@@ -244,10 +252,10 @@ export default function Home() {
             <div className="mt-6 grid gap-4 md:grid-cols-2">
               {trust.map((x) => (
                 <StaggerItem key={x.title}>
-                  <div className={cardClassSm}>
+                  <motion.div className={cardClassSm} {...hoverCard}>
                     <div className="font-semibold">{x.title}</div>
                     <p className="mt-2 text-sm text-white/70">{x.desc}</p>
-                  </div>
+                  </motion.div>
                 </StaggerItem>
               ))}
             </div>

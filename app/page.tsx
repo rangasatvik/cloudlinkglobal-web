@@ -14,7 +14,7 @@ import DemoPanel from "./components/DemoPanel";
 import CinematicIntro from "./components/CinematicIntro";
 import { motion } from "framer-motion";
 
-const easeApple = [0.22, 1, 0.36, 1];
+const easeApple: [number, number, number, number] = [0.22, 1, 0.36, 1];
 
 export default function Home() {
   const [introComplete, setIntroComplete] = useState(false);
